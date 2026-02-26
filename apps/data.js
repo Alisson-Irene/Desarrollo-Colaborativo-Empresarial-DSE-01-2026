@@ -1,5 +1,19 @@
 export let productos = [
-  { id: 1, nombre: "Producto 1", precio: 10 },
-  { id: 2, nombre: "Producto 2", precio: 25 },
-  { id: 3, nombre: "Producto 3", precio: 40 }
+    {
+        id: 1,
+        nombre: "Laptop HP",
+        precio: 850,
+        descripcion: "Laptop HP con 8GB de RAM y 512GB SSD",
+        estado: true,
+        categoria: "Tecnología"
+    },
+   
+    {
+        id: 2,
+        nombre: "Cuaderno Profesional",
+        precio: 5,
+        descripcion: "Cuaderno de 100 páginas para uso general",
+        estado: false,
+        categoria: "General"
+    }
 ];
