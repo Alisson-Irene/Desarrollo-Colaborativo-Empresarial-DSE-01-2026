@@ -1,19 +1,16 @@
+export const categorias = [
+  { id: 1, nombre: "Electrónica" },
+  { id: 2, nombre: "Hogar" },
+  { id: 3, nombre: "Oficina" }
+];
+
 export let productos = [
-    {
-        id: 1,
-        nombre: "Laptop HP",
-        precio: 850,
-        descripcion: "Laptop HP con 8GB de RAM y 512GB SSD",
-        estado: true,
-        categoria: "Tecnología"
-    },
-   
-    {
-        id: 2,
-        nombre: "Cuaderno Profesional",
-        precio: 5,
-        descripcion: "Cuaderno de 100 páginas para uso general",
-        estado: false,
-        categoria: "General"
-    }
+  {
+    id: 1,
+    nombre: "Producto 1",
+    precio: 10,
+    descripcion: "Producto de ejemplo",
+    categoriaId: 1,
+    estado: "activo"
+  }
 ];
