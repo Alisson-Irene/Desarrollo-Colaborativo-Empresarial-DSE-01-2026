@@ -1,23 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Gestión de Productos</title>
+<meta charset="UTF-8">
+<title>Gestión de Productos</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    <h1>Listado de Productos</h1>
+<nav class="menu">
+    <button onclick="mostrarSeccion('crear')">Crear Producto</button>
+    <button onclick="mostrarSeccion('listar')">Lista de Productos</button>
+</nav>
 
-    <div id="formulario">
-        <input type="text" id="nombre" placeholder="Nombre del producto">
-        <input type="number" id="precio" placeholder="Precio">
-        <button onclick="agregarProducto()">Agregar</button>
-    </div>
+<h1>Gestión de Productos</h1>
 
-    <ul id="listaProductos">
-        <li>Producto 1 - $10</li>
-        <li>Producto 2 - $25</li>
-        <li>Producto 3 - $40</li>
-    </ul>
+<section id="seccionCrear" class="seccion">
+<div id="formulario">
 
-    <script src="app.js"></script>
+<input type="hidden" id="productoId">
+
+<input type="text" id="nombre" placeholder="Nombre del producto">
+
+<input type="number" id="precio" placeholder="Precio">
+
+<textarea id="descripcion" placeholder="Descripción del producto"></textarea>
+
+<select id="categoria"></select>
+
+<select id="estado">
+    <option value="activo">Activo</option>
+    <option value="inactivo">Inactivo</option>
+</select>
+
+<button onclick="agregarProducto()">Guardar Producto</button>
+
+</div>
+</section>
+
+<section id="seccionListar" class="seccion oculto">
+<ul id="listaProductos"></ul>
+</section>
+
+<script type="module" src="apps/app.js"></script>
 </body>
 </html>
