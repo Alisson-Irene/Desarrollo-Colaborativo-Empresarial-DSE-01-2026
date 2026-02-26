@@ -1,15 +1,47 @@
-import { productos } from "./data.js";
+import { productos, categorias } from "./data.js";
 
 export function renderProductos() {
   const lista = document.getElementById("listaProductos");
   lista.innerHTML = "";
 
   productos.forEach(producto => {
+    const categoria = categorias.find(c => c.id === producto.categoriaId);
+
     const li = document.createElement("li");
+
     li.innerHTML = `
-      ${producto.nombre}
-      <span>$${producto.precio}</span>
+      <div class="info">
+        <strong>${producto.nombre}</strong>
+        <small>${producto.descripcion}</small>
+        <small>Categoría: ${categoria?.nombre || "N/A"}</small>
+        <small class="${producto.estado}">
+          Estado: ${producto.estado}
+        </small>
+      </div>
+
+      <div class="acciones">
+        <span class="precio">$${producto.precio}</span>
+        <button class="btn-editar" onclick="editarProducto(${producto.id})">
+
+          
+           Editar
+
+        </button>
+      </div>
     `;
+
     lista.appendChild(li);
+  });
+}
+
+export function cargarCategorias() {
+  const select = document.getElementById("categoria");
+  select.innerHTML = "";
+
+  categorias.forEach(cat => {
+    const option = document.createElement("option");
+    option.value = cat.id;
+    option.textContent = cat.nombre;
+    select.appendChild(option);
   });
 }
