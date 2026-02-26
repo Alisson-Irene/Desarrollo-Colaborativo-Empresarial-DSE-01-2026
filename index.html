@@ -3,22 +3,43 @@
 <head>
     <title>Gestión de Productos</title>
     <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    
+    <nav class="navbar">
+        <h2>Gestión de Productos</h2>
+    </nav>
+
     <h1>Listado de Productos</h1>
 
     <div id="formulario">
         <input type="text" id="nombre" placeholder="Nombre del producto">
+        
+        <input type="text" id="descripcion" placeholder="Descripción">
+        
         <input type="number" id="precio" placeholder="Precio">
+
+        <select id="categoria">
+            <option value="General">General</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Hogar">Hogar</option>
+        </select>
+
+        <label class="check-estado">
+            <input type="checkbox" id="estado">
+            Producto activo
+        </label>
+
         <button onclick="agregarProducto()">Agregar</button>
     </div>
 
     <ul id="listaProductos">
-        <li>Producto 1 - $10</li>
-        <li>Producto 2 - $25</li>
-        <li>Producto 3 - $40</li>
+        <li>Laptop HP - $850</li>
+        <li>Cuaderno Profesional - $5</li>
     </ul>
 
     <script type="module" src="apps/app.js"></script>
+
 </body>
 </html>
