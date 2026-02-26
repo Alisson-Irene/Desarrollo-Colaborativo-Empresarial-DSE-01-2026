@@ -22,7 +22,10 @@ export function renderProductos() {
       <div class="acciones">
         <span class="precio">$${producto.precio}</span>
         <button class="btn-editar" onclick="editarProducto(${producto.id})">
+
+          
            Editar
+
         </button>
       </div>
     `;
