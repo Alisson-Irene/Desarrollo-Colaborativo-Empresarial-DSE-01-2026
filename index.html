@@ -1,45 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Gestión de Productos</title>
-    <link rel="stylesheet" href="style.css"> 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta charset="UTF-8">
+<title>Gestión de Productos</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    
-    <nav class="navbar">
-        <h2>Gestión de Productos</h2>
-    </nav>
+<nav class="menu">
+    <button onclick="mostrarSeccion('crear')">Crear Producto</button>
+    <button onclick="mostrarSeccion('listar')">Lista de Productos</button>
+</nav>
 
-    <h1>Listado de Productos</h1>
+<h1>Gestión de Productos</h1>
 
-    <div id="formulario">
-        <input type="text" id="nombre" placeholder="Nombre del producto">
-        
-        <input type="text" id="descripcion" placeholder="Descripción">
-        
-        <input type="number" id="precio" placeholder="Precio">
+<section id="seccionCrear" class="seccion">
+<div id="formulario">
 
-        <select id="categoria">
-            <option value="General">General</option>
-            <option value="Tecnología">Tecnología</option>
-            <option value="Hogar">Hogar</option>
-        </select>
+<input type="hidden" id="productoId">
 
-        <label class="check-estado">
-            <input type="checkbox" id="estado">
-            Producto activo
-        </label>
+<input type="text" id="nombre" placeholder="Nombre del producto">
 
-        <button onclick="agregarProducto()">Agregar</button>
-    </div>
+<input type="number" id="precio" placeholder="Precio">
 
-    <ul id="listaProductos">
-        <li>Laptop HP - $850</li>
-        <li>Cuaderno Profesional - $5</li>
-    </ul>
+<textarea id="descripcion" placeholder="Descripción del producto"></textarea>
 
-    <script type="module" src="apps/app.js"></script>
+<select id="categoria"></select>
 
+<select id="estado">
+    <option value="activo">Activo</option>
+    <option value="inactivo">Inactivo</option>
+</select>
+
+<button onclick="agregarProducto()">Guardar Producto</button>
+
+</div>
+</section>
+
+<section id="seccionListar" class="seccion oculto">
+<ul id="listaProductos"></ul>
+</section>
+
+<script type="module" src="apps/app.js"></script>
 </body>
 </html>
