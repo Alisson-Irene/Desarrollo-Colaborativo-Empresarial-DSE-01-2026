@@ -20,7 +20,7 @@ export function renderProductos() {
       </div>
 
       <div class="acciones">
-        <span class="precio">$${producto.precio}</span>
+        <span class="precio">$${producto.precio.toFixed(2)}</span>
         <button class="btn-editar" onclick="editarProducto(${producto.id})">
 
           
@@ -37,6 +37,13 @@ export function renderProductos() {
 export function cargarCategorias() {
   const select = document.getElementById("categoria");
   select.innerHTML = "";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Seleccione categoría";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  select.appendChild(defaultOption);
 
   categorias.forEach(cat => {
     const option = document.createElement("option");

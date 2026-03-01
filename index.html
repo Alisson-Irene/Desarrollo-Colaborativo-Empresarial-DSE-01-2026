@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gestión de Productos</title>
 <link rel="stylesheet" href="style.css">
 
@@ -10,6 +11,7 @@
 </head>
 
 <body>
+
 <nav class="menu">
     <button onclick="mostrarSeccion('crear')">Crear Producto</button>
     <button onclick="mostrarSeccion('listar')">Lista de Productos</button>
@@ -17,33 +19,45 @@
 
 <h1>Gestión de Productos</h1>
 
+<!-- SECCIÓN CREAR / EDITAR -->
 <section id="seccionCrear" class="seccion">
-<div id="formulario">
+    <div id="formulario">
 
-<input type="hidden" id="productoId">
+        <input type="hidden" id="productoId">
 
-<input type="text" id="nombre" placeholder="Nombre del producto">
+        <input type="text" id="nombre" placeholder="Nombre del producto">
 
-<input type="number" id="precio" placeholder="Precio">
+        <input type="number" id="precio" placeholder="Precio">
 
-<textarea id="descripcion" placeholder="Descripción del producto"></textarea>
+        <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
 
-<select id="categoria"></select>
+        <select id="categoria"></select>
 
-<select id="estado">
-    <option value="activo">Activo</option>
-    <option value="inactivo">Inactivo</option>
-</select>
+        <select id="estado">
+        <option value="" disabled selected>Seleccione estado</option>
+        <option value="activo">Activo</option>
+        <option value="inactivo">Inactivo</option>
+        </select>
 
-<button onclick="agregarProducto()">Guardar Producto</button>
+        <div class="botones-form">
+            <button id="btnGuardar" onclick="agregarProducto()">
+                Guardar Producto
+            </button>
 
-</div>
+            <button id="btnCancelar" class="oculto" onclick="cancelarEdicion()">
+                Cancelar
+            </button>
+        </div>
+
+    </div>
 </section>
 
+<!-- SECCIÓN LISTAR -->
 <section id="seccionListar" class="seccion oculto">
-<ul id="listaProductos"></ul>
+    <ul id="listaProductos"></ul>
 </section>
 
 <script type="module" src="apps/app.js"></script>
+
 </body>
 </html>

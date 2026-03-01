@@ -1,6 +1,7 @@
 import { renderProductos, cargarCategorias } from "./render.js";
-import { agregarProducto, editarProducto } from "./agregar.js";
+import { agregarProducto, editarProducto, cancelarEdicion } from "./agregar.js";
 
+window.cancelarEdicion = cancelarEdicion;
 window.agregarProducto = agregarProducto;
 window.editarProducto = editarProducto;
 
