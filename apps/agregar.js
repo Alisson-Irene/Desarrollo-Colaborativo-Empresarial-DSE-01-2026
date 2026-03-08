@@ -153,9 +153,8 @@ Math.max(...productos.map(p=>p.id))+1
 import { productos } from "./data.js";
 import { renderProductos } from "./render.js";
 
-
-   //Guardar o actualizar
-  export function agregarProducto() {
+//Guardar o actualizar
+export function agregarProducto() {
   const id = document.getElementById("productoId").value;
   const nombre = document.getElementById("nombre").value.trim();
   const precio = parseFloat(document.getElementById("precio").value);
@@ -168,10 +167,9 @@ import { renderProductos } from "./render.js";
     return;
   }
 
-    // VALIDACIÓN DE DUPLICADO (NO REPETIR NOMBRE)
-  const productoExistente = productos.find(p =>
-    p.nombre.toLowerCase() === nombre.toLowerCase() &&
-    p.id != id   
+  // VALIDACIÓN DE DUPLICADO (NO REPETIR NOMBRE)
+  const productoExistente = productos.find(
+    (p) => p.nombre.toLowerCase() === nombre.toLowerCase() && p.id != id,
   );
 
   if (productoExistente) {
@@ -186,11 +184,11 @@ import { renderProductos } from "./render.js";
       precio,
       descripcion,
       categoriaId,
-      estado
+      estado,
     });
 
     Swal.fire("Actualizado", "Producto actualizado", "success");
-  } 
+  }
   // CREAR
   else {
     const nuevoProducto = {
@@ -199,7 +197,7 @@ import { renderProductos } from "./render.js";
       precio,
       descripcion,
       categoriaId,
-      estado
+      estado,
     };
 
     productos.push(nuevoProducto);
@@ -211,17 +209,16 @@ import { renderProductos } from "./render.js";
   renderProductos();
 }
 
-
-   //Botón editar
+//Botón editar
 export function editarProducto(id) {
-  const producto = productos.find(p => p.id === id);
+  const producto = productos.find((p) => p.id === id);
   if (!producto) return;
 
   cargarDatosFormulario(producto);
 }
-   //Cargar datos al formulario
+//Cargar datos al formulario
 
-  export function cargarDatosFormulario(producto) {
+export function cargarDatosFormulario(producto) {
   document.getElementById("productoId").value = producto.id;
   document.getElementById("nombre").value = producto.nombre;
   document.getElementById("precio").value = producto.precio;
@@ -235,17 +232,15 @@ export function editarProducto(id) {
   window.mostrarSeccion("crear");
 }
 
-
 export function actualizarProductoArray(id, datos) {
-  const index = productos.findIndex(p => p.id == id);
+  const index = productos.findIndex((p) => p.id == id);
   if (index === -1) return;
 
   productos[index] = {
     ...productos[index],
-    ...datos
+    ...datos,
   };
 }
-
 
 function limpiarFormulario() {
   document.getElementById("productoId").value = "";
@@ -266,8 +261,13 @@ export function cancelarEdicion() {
 }
 
 function generarId() {
+<<<<<<< HEAD
+  return productos.length ? Math.max(...productos.map((p) => p.id)) + 1 : 1;
+}
+=======
   return productos.length
     ? Math.max(...productos.map(p => p.id)) + 1
     : 1;
 }
 
+>>>>>>> origin/develop

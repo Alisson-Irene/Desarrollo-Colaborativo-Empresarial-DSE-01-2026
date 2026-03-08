@@ -83,46 +83,84 @@ select.appendChild(op);
 });
 
 
-  productos.forEach(producto => {
-    const categoria = categorias.find(c => c.id === producto.categoriaId);
+const lista = document.getElementById("listaProductos");
+lista.innerHTML="";
 
-    const li = document.createElement("li");
+productos.forEach(producto=>{
 
-    li.innerHTML = `
-      <div class="info">
-        <strong>${producto.nombre}</strong>
-        <small>${producto.descripcion}</small>
-        <small>Categoría: ${categoria?.nombre || "N/A"}</small>
-        <small class="${producto.estado}">
-          Estado: ${producto.estado}
-        </small>
-      </div>
+const categoria = categorias.find(c=>c.id===producto.categoriaId);
 
-      <div class="acciones">
-        <span class="precio">$${producto.precio.toFixed(2)}</span>
-        <button class="btn-editar" onclick="editarProducto(${producto.id})">
+const li = document.createElement("li");
 
-          
-           Editar
+li.innerHTML = `
+<div class="info">
 
-        </button>
-      </div>
-    `;
+<strong>${producto.nombre}</strong>
 
-    lista.appendChild(li);
-  });
+<small>ID: ${producto.id}</small>
+
+<small>${producto.descripcion}</small>
+
+<small>Categoría: ${categoria?.nombre || "N/A"}</small>
+
+<small>Stock: ${producto.stock}</small>
+
+<small class="${producto.estado}">
+Estado: ${producto.estado}
+</small>
+
+</div>
+<div class="acciones">
+
+<span class="precio">$${producto.precio.toFixed(2)}</span>
+
+<button class="btn-detalles"
+onclick="verDetallesProducto(${producto.id})">
+Ver detalles
+</button>
+
+<button class="btn-editar"
+onclick="editarProducto(${producto.id})">
+Editar
+</button>
+
+<button class="btn-eliminar"
+onclick="eliminarProducto(${producto.id})">
+Eliminar
+</button>
+
+</div>
+`;
+
+lista.appendChild(li);
+
+});
+
 }
 
-export function cargarCategorias() {
-  const select = document.getElementById("categoria");
-  select.innerHTML = "";
+export function cargarCategorias(){
 
-  const defaultOption = document.createElement("option");
-  defaultOption.value = "";
-  defaultOption.textContent = "Seleccione categoría";
-  defaultOption.disabled = true;
-  defaultOption.selected = true;
-  select.appendChild(defaultOption);
+const select = document.getElementById("categoria");
+
+select.innerHTML="";
+
+const option = document.createElement("option");
+option.value="";
+option.textContent="Seleccione categoría";
+option.disabled=true;
+option.selected=true;
+
+select.appendChild(option);
+
+categorias.forEach(cat=>{
+
+const op = document.createElement("option");
+op.value=cat.id;
+op.textContent=cat.nombre;
+
+select.appendChild(op);
+
+});
 
   categorias.forEach(cat => {
     const option = document.createElement("option");
@@ -130,5 +168,6 @@ export function cargarCategorias() {
     option.textContent = cat.nombre;
     select.appendChild(option);
   });
+
 
 }

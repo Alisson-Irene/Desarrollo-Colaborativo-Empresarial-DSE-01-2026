@@ -9,6 +9,7 @@ export let productos = [
     id: 1,
     nombre: "Producto 1",
     precio: 10,
+    stock: 5,
     descripcion: "Producto de ejemplo",
     categoriaId: 1,
     estado: "activo"
