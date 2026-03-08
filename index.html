@@ -4,57 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gestión de Productos</title>
+
 <link rel="stylesheet" href="style.css">
 
-<!-- SweetAlert2 -->
+<!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
 <nav class="menu">
-    <button onclick="mostrarSeccion('crear')">Crear Producto</button>
-    <button onclick="mostrarSeccion('listar')">Lista de Productos</button>
+<button onclick="mostrarSeccion('crear')">Crear Producto</button>
+<button onclick="mostrarSeccion('listar')">Lista de Productos</button>
 </nav>
 
 <h1>Gestión de Productos</h1>
 
-<!-- SECCIÓN CREAR / EDITAR -->
+<!-- FORMULARIO -->
 <section id="seccionCrear" class="seccion">
-    <div id="formulario">
 
-        <input type="hidden" id="productoId">
+<div id="formulario">
 
-        <input type="text" id="nombre" placeholder="Nombre del producto">
+<input type="hidden" id="productoId">
+<input type="text" id="nombre" placeholder="Nombre del producto">
+<input type="number" id="precio" placeholder="Precio" min="0" step="0.01">
+<input type="number" id="stock" placeholder="Stock" min="0">
+<textarea id="descripcion" placeholder="Descripción del producto"></textarea>
+<select id="categoria"></select>
 
-        <input type="number" id="precio" placeholder="Precio">
+<div class="botones-form">
+<button id="btnGuardar" onclick="agregarProducto()">
+Guardar Producto
+</button>
 
-        <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
+<button id="btnCancelar" class="oculto" onclick="cancelarEdicion()">
+Cancelar
+</button>
+</div>
 
-        <select id="categoria"></select>
+</div>
 
-        <select id="estado">
-        <option value="" disabled selected>Seleccione estado</option>
-        <option value="activo">Activo</option>
-        <option value="inactivo">Inactivo</option>
-        </select>
-
-        <div class="botones-form">
-            <button id="btnGuardar" onclick="agregarProducto()">
-                Guardar Producto
-            </button>
-
-            <button id="btnCancelar" class="oculto" onclick="cancelarEdicion()">
-                Cancelar
-            </button>
-        </div>
-
-    </div>
 </section>
 
-<!-- SECCIÓN LISTAR -->
+<!-- LISTA PRODUCTOS -->
 <section id="seccionListar" class="seccion oculto">
-    <ul id="listaProductos"></ul>
+
+<ul id="listaProductos"></ul>
+
 </section>
 
 <script type="module" src="apps/app.js"></script>
