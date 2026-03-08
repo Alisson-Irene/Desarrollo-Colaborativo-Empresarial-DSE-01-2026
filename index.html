@@ -1,23 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Gestión de Productos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de Productos</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
-    <h1>Listado de Productos</h1>
 
+<nav class="menu">
+    <button onclick="mostrarSeccion('crear')">Crear Producto</button>
+    <button onclick="mostrarSeccion('listar')">Lista de Productos</button>
+</nav>
+
+<h1>Gestión de Productos</h1>
+
+<!-- SECCIÓN CREAR / EDITAR -->
+<section id="seccionCrear" class="seccion">
     <div id="formulario">
+
+        <input type="hidden" id="productoId">
+
         <input type="text" id="nombre" placeholder="Nombre del producto">
+
         <input type="number" id="precio" placeholder="Precio">
-        <button onclick="agregarProducto()">Agregar</button>
+
+        <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
+
+        <select id="categoria"></select>
+
+        <select id="estado">
+        <option value="" disabled selected>Seleccione estado</option>
+        <option value="activo">Activo</option>
+        <option value="inactivo">Inactivo</option>
+        </select>
+
+        <div class="botones-form">
+            <button id="btnGuardar" onclick="agregarProducto()">
+                Guardar Producto
+            </button>
+
+            <button id="btnCancelar" class="oculto" onclick="cancelarEdicion()">
+                Cancelar
+            </button>
+        </div>
+
     </div>
+</section>
 
-    <ul id="listaProductos">
-        <li>Producto 1 - $10</li>
-        <li>Producto 2 - $25</li>
-        <li>Producto 3 - $40</li>
-    </ul>
+<!-- SECCIÓN LISTAR -->
+<section id="seccionListar" class="seccion oculto">
+    <ul id="listaProductos"></ul>
+</section>
 
-    <script src="app.js"></script>
+<script type="module" src="apps/app.js"></script>
+
 </body>
 </html>
