@@ -29,7 +29,6 @@ Estado: ${producto.estado}
 </small>
 
 </div>
-
 <div class="acciones">
 
 <span class="precio">$${producto.precio.toFixed(2)}</span>
