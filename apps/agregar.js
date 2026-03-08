@@ -261,13 +261,8 @@ export function cancelarEdicion() {
 }
 
 function generarId() {
-<<<<<<< HEAD
+
   return productos.length ? Math.max(...productos.map((p) => p.id)) + 1 : 1;
-}
-=======
-  return productos.length
-    ? Math.max(...productos.map(p => p.id)) + 1
-    : 1;
+
 }
 
->>>>>>> origin/develop
