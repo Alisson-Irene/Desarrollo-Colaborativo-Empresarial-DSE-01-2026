@@ -2,7 +2,7 @@ import { productos, categorias } from "./data.js";
 
 export function renderProductos() {
   const lista = document.getElementById("listaProductos");
-  lista.innerHTML = "";
+  lista.innerHTML = " ";
 
   const encabezado = document.createElement("li");
   encabezado.className = "fila-encabezado";
@@ -49,7 +49,7 @@ export function cargarCategorias() {
 
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
-  defaultOption.textContent = "Seleccione categoría";
+  defaultOption.textContent = "Seleccione la categoría";
   defaultOption.disabled = true;
   defaultOption.selected = true;
   select.appendChild(defaultOption);
@@ -76,6 +76,7 @@ export function renderCategorias() {
         Eliminar
       </button>
     `;
+
     lista.appendChild(li);
   });
 }
