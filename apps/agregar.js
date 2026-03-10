@@ -30,7 +30,7 @@ export function agregarProducto() {
   );
 
   if (productoExistente) {
-    Swal.fire("Error", "Ya existe un producto con ese nombre", "error");
+    Swal.fire("Error", "Ya existe un producto con ese mismo nombre", "error");
     return;
   }
 
