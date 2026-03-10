@@ -1,10 +1,10 @@
-export const categorias = [
+const categoriasPorDefecto = [
   { id: 1, nombre: "Electrónica" },
   { id: 2, nombre: "Hogar" },
   { id: 3, nombre: "Oficina" }
 ];
 
-export let productos = [
+const productosPorDefecto = [
   {
     id: 1,
     nombre: "Producto 1",
@@ -15,3 +15,14 @@ export let productos = [
     estado: "activo"
   }
 ];
+
+export let categorias = JSON.parse(localStorage.getItem("categorias")) || categoriasPorDefecto;
+export let productos = JSON.parse(localStorage.getItem("productos")) || productosPorDefecto;
+
+export function guardarCategorias() {
+  localStorage.setItem("categorias", JSON.stringify(categorias));
+}
+
+export function guardarProductos() {
+  localStorage.setItem("productos", JSON.stringify(productos));
+}
