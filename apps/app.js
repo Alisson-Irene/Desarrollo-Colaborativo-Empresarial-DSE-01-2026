@@ -10,6 +10,7 @@ import {
   actualizarPreviewEstado
 } from "./agregar.js";
 
+//window 
 window.agregarProducto = agregarProducto;
 window.editarProducto = editarProducto;
 window.cancelarEdicion = cancelarEdicion;
