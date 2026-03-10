@@ -33,7 +33,6 @@ h1 {
   display: none !important;
 }
 
-/* MENÚ DESPLEGABLE EN ESQUINA */
 .menu-desplegable {
   position: fixed;
   top: 20px;
