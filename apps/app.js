@@ -1,3 +1,4 @@
+import { productos, categorias } from "./data.js";
 import { renderProductos, cargarCategorias, renderCategorias } from "./render.js";
 import {
   agregarProducto,
@@ -10,7 +11,6 @@ import {
   actualizarPreviewEstado
 } from "./agregar.js";
 
-//window 
 window.agregarProducto = agregarProducto;
 window.editarProducto = editarProducto;
 window.cancelarEdicion = cancelarEdicion;
@@ -33,6 +33,47 @@ window.cerrarMenu = function () {
   document.getElementById("dropdownMenu").classList.add("oculto");
 };
 
+window.aplicarFiltros = function () {
+  const inputBusqueda = document.getElementById("busquedaProducto");
+  const ordenFiltro = document.getElementById("ordenFiltro");
+  const categoriaFiltro = document.getElementById("categoriaFiltro");
+  const estadoFiltro = document.getElementById("estadoFiltro");
+
+  let resultado = [...productos];
+
+  const texto = inputBusqueda.value.toLowerCase().trim();
+  if (texto) {
+    resultado = resultado.filter((producto) =>
+      producto.nombre.toLowerCase().includes(texto)
+    );
+  }
+
+  const categoria = categoriaFiltro.value;
+  if (categoria) {
+    resultado = resultado.filter((producto) =>
+      producto.categoriaId == categoria
+    );
+  }
+
+  const estado = estadoFiltro.value;
+  if (estado) {
+    resultado = resultado.filter((producto) =>
+      producto.estado === estado
+    );
+  }
+
+  const orden = ordenFiltro.value;
+  if (orden === "nombre") {
+    resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  }
+
+  if (orden === "precio") {
+    resultado.sort((a, b) => a.precio - b.precio);
+  }
+
+  renderProductos(resultado);
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarCategorias();
   renderProductos();
@@ -43,6 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
   if (stockInput) {
     stockInput.addEventListener("input", actualizarPreviewEstado);
   }
+
+  const categoriaFiltro = document.getElementById("categoriaFiltro");
+  if (categoriaFiltro) {
+    categoriaFiltro.innerHTML = <option value="">Filtrar por categoría</option>;
+
+    categorias.forEach((cat) => {
+      const option = document.createElement("option");
+      option.value = cat.id;
+      option.textContent = cat.nombre;
+      categoriaFiltro.appendChild(option);
+    });
+  }
+
+  const inputBusqueda = document.getElementById("busquedaProducto");
+  const ordenFiltro = document.getElementById("ordenFiltro");
+  const estadoFiltro = document.getElementById("estadoFiltro");
+
+  if (inputBusqueda) inputBusqueda.addEventListener("input", window.aplicarFiltros);
+  if (ordenFiltro) ordenFiltro.addEventListener("change", window.aplicarFiltros);
+  if (categoriaFiltro) categoriaFiltro.addEventListener("change", window.aplicarFiltros);
+  if (estadoFiltro) estadoFiltro.addEventListener("change", window.aplicarFiltros);
 
   document.addEventListener("click", (e) => {
     const menu = document.getElementById("dropdownMenu");
