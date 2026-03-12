@@ -1,111 +1,41 @@
 import { productos, categorias } from "./data.js";
 
-export function renderProductos(){
+export function renderProductos() {
+  const lista = document.getElementById("listaProductos");
+  lista.innerHTML = " ";
 
-const lista = document.getElementById("listaProductos");
-lista.innerHTML="";
+  const encabezado = document.createElement("li");
+  encabezado.className = "fila-encabezado";
+  encabezado.innerHTML = `
+    <span>Id</span>
+    <span>Nombre</span>
+    <span>Precio</span>
+    <span>Stock</span>
+    <span>Descripción</span>
+    <span>Categoría</span>
+    <span>Estado</span>
+    <span>Acciones</span>
+  `;
+  lista.appendChild(encabezado);
 
-productos.forEach(producto=>{
-
-const categoria = categorias.find(c=>c.id===producto.categoriaId);
-
-const li = document.createElement("li");
-
-li.innerHTML = `
-<div class="info">
-
-<strong>${producto.nombre}</strong>
-
-<small>ID: ${producto.id}</small>
-
-<small>${producto.descripcion}</small>
-
-<small>Categoría: ${categoria?.nombre || "N/A"}</small>
-
-<small>Stock: ${producto.stock}</small>
-
-<small class="${producto.estado}">
-Estado: ${producto.estado}
-</small>
-
-</div>
-
-<div class="acciones">
-
-<span class="precio">$${producto.precio.toFixed(2)}</span>
-
-<button class="btn-detalles"
-onclick="verDetallesProducto(${producto.id})">
-Ver detalles
-</button>
-
-<button class="btn-editar"
-onclick="editarProducto(${producto.id})">
-Editar
-</button>
-
-<button class="btn-eliminar"
-onclick="eliminarProducto(${producto.id})">
-Eliminar
-</button>
-
-</div>
-`;
-
-lista.appendChild(li);
-
-});
-
-}
-
-export function cargarCategorias(){
-
-const select = document.getElementById("categoria");
-
-select.innerHTML="";
-
-const option = document.createElement("option");
-option.value="";
-option.textContent="Seleccione categoría";
-option.disabled=true;
-option.selected=true;
-
-select.appendChild(option);
-
-categorias.forEach(cat=>{
-
-const op = document.createElement("option");
-op.value=cat.id;
-op.textContent=cat.nombre;
-
-select.appendChild(op);
-
-});
-
-
-  productos.forEach(producto => {
-    const categoria = categorias.find(c => c.id === producto.categoriaId);
+  productos.forEach((producto) => {
+    const categoria = categorias.find((c) => c.id === producto.categoriaId);
 
     const li = document.createElement("li");
+    li.className = "fila-producto";
 
     li.innerHTML = `
-      <div class="info">
-        <strong>${producto.nombre}</strong>
-        <small>${producto.descripcion}</small>
-        <small>Categoría: ${categoria?.nombre || "N/A"}</small>
-        <small class="${producto.estado}">
-          Estado: ${producto.estado}
-        </small>
-      </div>
-
+      <span>${producto.id}</span>
+      <span>${producto.nombre}</span>
+      <span>$${producto.precio.toFixed(2)}</span>
+      <span>${producto.stock}</span>
+      <span class="descripcion">${producto.descripcion || "Sin descripción"}</span>
+      <span>${categoria?.nombre || "N/A"}</span>
+      <span class="${producto.estado}">${producto.estado}</span>
       <div class="acciones">
-        <span class="precio">$${producto.precio.toFixed(2)}</span>
-        <button class="btn-editar" onclick="editarProducto(${producto.id})">
-
-          
-           Editar
-
-        </button>
+        <button class="btn-detalles" onclick="verDetallesProducto(${producto.id})">Ver</button>
+        <button class="btn-editar" onclick="editarProducto(${producto.id})">Editar</button>
+        <button class="btn-eliminar" onclick="eliminarProducto(${producto.id})">Eliminar</button>
       </div>
     `;
 
@@ -119,16 +49,34 @@ export function cargarCategorias() {
 
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
-  defaultOption.textContent = "Seleccione categoría";
+  defaultOption.textContent = "Seleccione la categoría";
   defaultOption.disabled = true;
   defaultOption.selected = true;
   select.appendChild(defaultOption);
 
-  categorias.forEach(cat => {
+  categorias.forEach((cat) => {
     const option = document.createElement("option");
     option.value = cat.id;
     option.textContent = cat.nombre;
     select.appendChild(option);
   });
+}
 
+export function renderCategorias() {
+  const lista = document.getElementById("listaCategorias");
+  if (!lista) return;
+
+  lista.innerHTML = "";
+
+  categorias.forEach((cat) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${cat.id} - ${cat.nombre}</span>
+      <button class="btn-eliminar-categoria" onclick="eliminarCategoria(${cat.id})">
+        Eliminar
+      </button>
+    `;
+
+    lista.appendChild(li);
+  });
 }
