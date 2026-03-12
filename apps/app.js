@@ -11,7 +11,7 @@ import {
   actualizarPreviewEstado
 } from "./agregar.js";
 
-// Funciones globales
+ //Funciones globales
 window.agregarProducto = agregarProducto;
 window.editarProducto = editarProducto;
 window.cancelarEdicion = cancelarEdicion;
@@ -64,7 +64,9 @@ window.aplicarFiltros = function () {
     );
   }
 
+
   const orden = ordenFiltro ? ordenFiltro.value : "";
+
   if (orden === "nombre") {
     resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
@@ -91,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (categoriaFiltro) {
     categoriaFiltro.innerHTML = `<option value="">Filtrar por categoría</option>`;
 
+    categoriaFiltro.innerHTML = <option value="">Filtrar por categoría</option>;
     categorias.forEach((cat) => {
       const option = document.createElement("option");
       option.value = cat.id;
