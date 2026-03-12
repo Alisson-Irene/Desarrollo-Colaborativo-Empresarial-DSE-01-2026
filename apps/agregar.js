@@ -47,6 +47,9 @@ export function agregarProducto() {
       nombre,
       precio,
       stock,
+
+      imagen: imagenFinal,
+
       imagen: imagenFinal,
       descripcion,
       categoriaId,
@@ -60,6 +63,7 @@ export function agregarProducto() {
       nombre,
       precio,
       stock,
+      imagen: imagenFinal,
       imagen: imagenFinal,
       descripcion,
       categoriaId,
@@ -77,6 +81,10 @@ export function agregarProducto() {
   } else {
     renderProductos();
   }
+
+  window.aplicarFiltros();
+  window.aplicarFiltros();
+  renderProductos();
   window.mostrarSeccion("listar");
 }
 
@@ -113,13 +121,15 @@ export function eliminarProducto(id) {
       productos.splice(index, 1);
       reordenarIdsProductos();
       guardarProductos();
-
       if (window.aplicarFiltros) {
         window.aplicarFiltros();
       } else {
         renderProductos();
       }
 
+      window.aplicarFiltros();
+      window.aplicarFiltros();
+      renderProductos();
       Swal.fire("Eliminado", "Producto eliminado correctamente", "success");
     }
   });
@@ -134,6 +144,9 @@ export function verDetallesProducto(id) {
   Swal.fire({
     title: producto.nombre,
     html: `
+      <img src="${producto.imagen || "https://via.placeholder.com/200x200?text=Producto"}"
+           alt="${producto.nombre}"
+           style="width:180px; height:180px; object-fit:cover; border-radius:12px; margin-bottom:12px;">
       <img src="${producto.imagen || "https://via.placeholder.com/200x200?text=Producto"}"
            alt="${producto.nombre}"
            style="width:180px; height:180px; object-fit:cover; border-radius:12px; margin-bottom:12px;">
@@ -219,7 +232,6 @@ export function agregarCategoria() {
   cargarCategorias();
   renderCategorias();
   actualizarFiltroCategorias();
-
   Swal.fire("Éxito", "Categoría agregada correctamente", "success");
 }
 
@@ -249,15 +261,23 @@ export function eliminarCategoria(id) {
     if (result.isConfirmed) {
       categorias.splice(index, 1);
       reordenarIdsCategorias();
+      // Actualiza automáticamente la secuencia
+      reordenarIdsCategorias();
+      // Esto hace que se actualice automáticamente la secuencia
+      reordenarIdsCategorias();
       guardarCategorias();
       cargarCategorias();
       renderCategorias();
       actualizarFiltroCategorias();
-
       if (window.aplicarFiltros) {
         window.aplicarFiltros();
       }
-
+      window.aplicarFiltros();
+      guardarCategorias();
+      cargarCategorias();
+      renderCategorias();
+      actualizarFiltroCategorias();
+      window.aplicarFiltros();
       Swal.fire("Eliminada", "Categoría eliminada correctamente", "success");
     }
   });
