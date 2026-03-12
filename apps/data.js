@@ -12,8 +12,12 @@ const productosPorDefecto = [
     stock: 5,
     descripcion: "Producto de ejemplo",
     categoriaId: 1,
+
     estado: "activo",
     imagen: "https://via.placeholder.com/80x80?text=Producto"
+
+    estado: "activo"
+
   }
 ];
 
