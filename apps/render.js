@@ -1,12 +1,13 @@
 import { productos, categorias } from "./data.js";
 
-export function renderProductos() {
+export function renderProductos(listaFiltrada = productos) {
   const lista = document.getElementById("listaProductos");
-  lista.innerHTML = " ";
+  lista.innerHTML = "";
 
   const encabezado = document.createElement("li");
   encabezado.className = "fila-encabezado";
   encabezado.innerHTML = `
+    <span>Img</span>
     <span>Id</span>
     <span>Nombre</span>
     <span>Precio</span>
@@ -18,13 +19,28 @@ export function renderProductos() {
   `;
   lista.appendChild(encabezado);
 
-  productos.forEach((producto) => {
+  if (listaFiltrada.length === 0) {
+    const vacio = document.createElement("li");
+    vacio.className = "fila-producto fila-vacia";
+    vacio.innerHTML = `
+      <span class="sin-resultados">No se encontraron productos</span>
+    `;
+    lista.appendChild(vacio);
+    return;
+  }
+
+  listaFiltrada.forEach((producto) => {
     const categoria = categorias.find((c) => c.id === producto.categoriaId);
 
     const li = document.createElement("li");
     li.className = "fila-producto";
 
     li.innerHTML = `
+      <img
+        class="imagen-producto"
+        src="${producto.imagen || "https://via.placeholder.com/80x80?text=Producto"}"
+        alt="${producto.nombre}"
+      >
       <span>${producto.id}</span>
       <span>${producto.nombre}</span>
       <span>$${producto.precio.toFixed(2)}</span>
