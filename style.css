@@ -108,7 +108,9 @@ h1 {
 #formulario input,
 #formulario textarea,
 #formulario select,
-#nuevaCategoria {
+#nuevaCategoria,
+#busquedaProducto,
+.filtros select {
   width: 100%;
   padding: 18px;
   border-radius: 16px;
@@ -122,14 +124,17 @@ h1 {
 
 #formulario input::placeholder,
 #formulario textarea::placeholder,
-#nuevaCategoria::placeholder {
+#nuevaCategoria::placeholder,
+#busquedaProducto::placeholder {
   color: rgba(255,255,255,0.6);
 }
 
 #formulario input:focus,
 #formulario textarea:focus,
 #formulario select:focus,
-#nuevaCategoria:focus {
+#nuevaCategoria:focus,
+#busquedaProducto:focus,
+.filtros select:focus {
   border: 2px solid #ff00cc;
   box-shadow: 0 0 15px #ff00cc;
 }
@@ -204,11 +209,30 @@ select option {
   transform: scale(1.05);
 }
 
+/* BÚSQUEDA */
+.barra-busqueda {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* FILTROS */
+.filtros {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filtros select {
+  flex: 1;
+  min-width: 190px;
+}
+
 /* TABLA DE PRODUCTOS */
 #listaProductos {
   list-style: none;
   padding: 0;
-  margin-top: 30px;
+  margin-top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -219,10 +243,10 @@ select option {
 .fila-encabezado,
 .fila-producto {
   display: grid;
-  grid-template-columns: 55px 120px 100px 80px 1.4fr 130px 90px 210px;
+  grid-template-columns: 80px 55px 120px 100px 80px 1.2fr 130px 90px 210px;
   gap: 14px;
   align-items: center;
-  min-width: 1120px;
+  min-width: 1240px;
   padding: 18px 14px;
 }
 
@@ -234,15 +258,31 @@ select option {
   font-size: 14px;
 }
 
-/* CENTRAR TITULOS DE LAS COLUMNAS */
-.fila-encabezado div {
-  text-align: center;
-}
-
 .fila-producto {
   background: rgba(255,255,255,0.08);
   border-radius: 16px;
   box-shadow: 0 16px 35px rgba(0,0,0,0.28);
+}
+
+.fila-vacia {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.sin-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+}
+
+.imagen-producto {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
 }
 
 .descripcion {
@@ -366,6 +406,10 @@ select option {
 
   .botones-form {
     justify-content: center;
+  }
+
+  .filtros {
+    flex-direction: column;
   }
 
   .menu-desplegable {
