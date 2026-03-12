@@ -1,63 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestión de Productos</title>
-<link rel="stylesheet" href="style.css">
-
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Productos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
 
-<nav class="menu">
-    <button onclick="mostrarSeccion('crear')">Crear Producto</button>
-    <button onclick="mostrarSeccion('listar')">Lista de Productos</button>
-</nav>
+  <nav class="menu-desplegable">
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
 
-<h1>Gestión de Productos</h1>
-
-<!-- SECCIÓN CREAR / EDITAR -->
-<section id="seccionCrear" class="seccion">
-    <div id="formulario">
-
-        <input type="hidden" id="productoId">
-
-        <input type="text" id="nombre" placeholder="Nombre del producto">
-
-        <input type="number" id="precio" placeholder="Precio">
-
-        <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
-
-        <select id="categoria"></select>
-
-        <select id="estado">
-        <option value="" disabled selected>Seleccione estado</option>
-        <option value="activo">Activo</option>
-        <option value="inactivo">Inactivo</option>
-        </select>
-
-        <div class="botones-form">
-            <button id="btnGuardar" onclick="agregarProducto()">
-                Guardar Producto
-            </button>
-
-            <button id="btnCancelar" class="oculto" onclick="cancelarEdicion()">
-                Cancelar
-            </button>
-        </div>
-
+    <div id="dropdownMenu" class="dropdown-contenido oculto">
+      <button onclick="mostrarSeccion('crear'); cerrarMenu()">Crear Producto</button>
+      <button onclick="mostrarSeccion('listar'); cerrarMenu()">Lista de Productos</button>
+      <button onclick="mostrarSeccion('categorias'); cerrarMenu()">Categorías</button>
     </div>
-</section>
+  </nav>
 
-<!-- SECCIÓN LISTAR -->
-<section id="seccionListar" class="seccion oculto">
+  <h1>Gestión de Productos</h1>
+
+  <section id="seccionCrear" class="seccion">
+    <div id="formulario">
+      <input type="hidden" id="productoId">
+
+      <input type="text" id="nombre" placeholder="Nombre del producto">
+      <input type="number" id="precio" placeholder="Precio" min="0.01" step="0.01">
+      <input type="number" id="stock" placeholder="Stock" min="0">
+
+      <input type="text" id="imagen" placeholder="URL de la imagen del producto">
+
+      <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
+
+      <select id="categoria"></select>
+
+      <div class="estado-preview">
+        Estado automático: <span id="textoEstado" class="inactivo">inactivo</span>
+      </div>
+
+      <div class="botones-form">
+        <button id="btnGuardar" onclick="agregarProducto()">Guardar Producto</button>
+        <button id="btnCancelar" onclick="cancelarEdicion()">Cancelar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="seccionListar" class="seccion oculto">
+    <div class="barra-busqueda">
+      <input
+        type="text"
+        id="busquedaProducto"
+        placeholder="Buscar producto por nombre..."
+      >
+    </div>
+
+    <div class="filtros">
+      <select id="ordenFiltro">
+        <option value="">Ordenar</option>
+        <option value="nombre">Ordenar por nombre</option>
+        <option value="precio">Ordenar por precio</option>
+      </select>
+
+      <select id="categoriaFiltro">
+        <option value="">Filtrar por categoría</option>
+      </select>
+
+      <select id="estadoFiltro">
+        <option value="">Estado</option>
+        <option value="activo">Solo activos</option>
+        <option value="inactivo">Solo inactivos</option>
+      </select>
+    </div>
+
     <ul id="listaProductos"></ul>
-</section>
+  </section>
 
-<script type="module" src="apps/app.js"></script>
+  <section id="seccionCategorias" class="seccion oculto">
+    <div id="panelCategorias">
+      <h2>Gestión de Categorías</h2>
 
+      <div class="fila-categoria">
+        <input type="text" id="nuevaCategoria" placeholder="Nueva categoría">
+        <button id="btnAgregarCategoria" onclick="agregarCategoria()">Agregar una nueva Categoría</button>
+      </div>
+
+      <ul id="listaCategorias"></ul>
+    </div>
+  </section>
+
+  <script type="module" src="apps/app.js"></script>
 </body>
 </html>
