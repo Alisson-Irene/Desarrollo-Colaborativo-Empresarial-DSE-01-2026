@@ -101,7 +101,6 @@ export function renderCategorias() {
         Eliminar
       </button>
     `;
-
     lista.appendChild(li);
   });
 }

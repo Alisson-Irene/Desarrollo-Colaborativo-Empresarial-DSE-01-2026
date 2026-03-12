@@ -72,7 +72,11 @@ export function agregarProducto() {
   guardarProductos();
   limpiarFormulario();
   actualizarPreviewEstado();
-  window.aplicarFiltros();
+  if (window.aplicarFiltros) {
+    window.aplicarFiltros();
+  } else {
+    renderProductos();
+  }
   window.mostrarSeccion("listar");
 }
 
@@ -109,7 +113,12 @@ export function eliminarProducto(id) {
       productos.splice(index, 1);
       reordenarIdsProductos();
       guardarProductos();
-      window.aplicarFiltros();
+
+      if (window.aplicarFiltros) {
+        window.aplicarFiltros();
+      } else {
+        renderProductos();
+      }
 
       Swal.fire("Eliminado", "Producto eliminado correctamente", "success");
     }
@@ -239,15 +248,15 @@ export function eliminarCategoria(id) {
   }).then((result) => {
     if (result.isConfirmed) {
       categorias.splice(index, 1);
-
-      // Actualiza automáticamente la secuencia
       reordenarIdsCategorias();
-
       guardarCategorias();
       cargarCategorias();
       renderCategorias();
       actualizarFiltroCategorias();
-      window.aplicarFiltros();
+
+      if (window.aplicarFiltros) {
+        window.aplicarFiltros();
+      }
 
       Swal.fire("Eliminada", "Categoría eliminada correctamente", "success");
     }

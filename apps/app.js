@@ -65,6 +65,7 @@ window.aplicarFiltros = function () {
   }
 
   const orden = ordenFiltro ? ordenFiltro.value : "";
+
   if (orden === "nombre") {
     resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
