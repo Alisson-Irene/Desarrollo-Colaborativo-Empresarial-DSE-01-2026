@@ -23,7 +23,7 @@ export function renderProductos(listaFiltrada = productos) {
     const vacio = document.createElement("li");
     vacio.className = "fila-producto fila-vacia";
     vacio.innerHTML = `
-      <span class="sin-resultados">No se encontraron productos</span>
+      <span class="sin-resultados">No se encontraron productos !!! </span>
     `;
     lista.appendChild(vacio);
     return;
@@ -67,7 +67,7 @@ export function cargarCategorias() {
 
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
-  defaultOption.textContent = "Seleccione la categoría";
+  defaultOption.textContent = "Seleccione la categoría !";
   defaultOption.disabled = true;
   defaultOption.selected = true;
   select.appendChild(defaultOption);

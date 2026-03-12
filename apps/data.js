@@ -7,7 +7,7 @@ const categoriasPorDefecto = [
 const productosPorDefecto = [
   {
     id: 1,
-    nombre: "Producto 1",
+    nombre: "Producto #1",
     precio: 12,
     stock: 5,
     descripcion: "Producto de ejemplo",
