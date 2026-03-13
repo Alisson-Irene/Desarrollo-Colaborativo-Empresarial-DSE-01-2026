@@ -23,7 +23,7 @@ export function renderProductos(listaFiltrada = productos) {
     const vacio = document.createElement("li");
     vacio.className = "fila-producto fila-vacia";
     vacio.innerHTML = `
-      <span class="sin-resultados">No se encontraron productos</span>
+      <span class="sin-resultados">No se encontraron productos !!! </span>
     `;
     lista.appendChild(vacio);
     return;
@@ -61,11 +61,13 @@ export function renderProductos(listaFiltrada = productos) {
 
 export function cargarCategorias() {
   const select = document.getElementById("categoria");
+  if (!select) return;
+
   select.innerHTML = "";
 
   const defaultOption = document.createElement("option");
   defaultOption.value = "";
-  defaultOption.textContent = "Seleccione la categoría";
+  defaultOption.textContent = "Seleccione la categoría !";
   defaultOption.disabled = true;
   defaultOption.selected = true;
   select.appendChild(defaultOption);
@@ -84,6 +86,13 @@ export function renderCategorias() {
 
   lista.innerHTML = "";
 
+  if (categorias.length === 0) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>No hay categorías registradas</span>`;
+    lista.appendChild(li);
+    return;
+  }
+
   categorias.forEach((cat) => {
     const li = document.createElement("li");
     li.innerHTML = `
@@ -92,7 +101,6 @@ export function renderCategorias() {
         Eliminar
       </button>
     `;
-
     lista.appendChild(li);
   });
 }

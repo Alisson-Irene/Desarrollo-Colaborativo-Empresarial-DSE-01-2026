@@ -11,6 +11,7 @@ import {
   actualizarPreviewEstado
 } from "./agregar.js";
 
+// Las funciones globales
 window.agregarProducto = agregarProducto;
 window.editarProducto = editarProducto;
 window.cancelarEdicion = cancelarEdicion;
@@ -33,6 +34,7 @@ window.cerrarMenu = function () {
   document.getElementById("dropdownMenu").classList.add("oculto");
 };
 
+// Filtros y búsqueda
 window.aplicarFiltros = function () {
   const inputBusqueda = document.getElementById("busquedaProducto");
   const ordenFiltro = document.getElementById("ordenFiltro");
@@ -41,28 +43,29 @@ window.aplicarFiltros = function () {
 
   let resultado = [...productos];
 
-  const texto = inputBusqueda.value.toLowerCase().trim();
+  const texto = inputBusqueda ? inputBusqueda.value.toLowerCase().trim() : "";
   if (texto) {
     resultado = resultado.filter((producto) =>
       producto.nombre.toLowerCase().includes(texto)
     );
   }
 
-  const categoria = categoriaFiltro.value;
+  const categoria = categoriaFiltro ? categoriaFiltro.value : "";
   if (categoria) {
     resultado = resultado.filter((producto) =>
       producto.categoriaId == categoria
     );
   }
 
-  const estado = estadoFiltro.value;
+  const estado = estadoFiltro ? estadoFiltro.value : "";
   if (estado) {
     resultado = resultado.filter((producto) =>
       producto.estado === estado
     );
   }
 
-  const orden = ordenFiltro.value;
+  const orden = ordenFiltro ? ordenFiltro.value : "";
+
   if (orden === "nombre") {
     resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
@@ -87,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const categoriaFiltro = document.getElementById("categoriaFiltro");
   if (categoriaFiltro) {
-    categoriaFiltro.innerHTML = <option value="">Filtrar por categoría</option>;
+    categoriaFiltro.innerHTML = `<option value="">Filtrar por categoría</option>`;
 
     categorias.forEach((cat) => {
       const option = document.createElement("option");

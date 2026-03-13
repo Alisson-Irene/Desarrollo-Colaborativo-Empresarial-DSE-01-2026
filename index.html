@@ -16,7 +16,6 @@
       <button onclick="mostrarSeccion('crear'); cerrarMenu()">Crear Producto</button>
       <button onclick="mostrarSeccion('listar'); cerrarMenu()">Lista de Productos</button>
       <button onclick="mostrarSeccion('categorias'); cerrarMenu()">Categorías</button>
-<<<<<<< HEAD
     </div>
   </nav>
 
@@ -29,7 +28,6 @@
       <input type="text" id="nombre" placeholder="Nombre del producto">
       <input type="number" id="precio" placeholder="Precio" min="0.01" step="0.01">
       <input type="number" id="stock" placeholder="Stock" min="0">
-
       <input type="text" id="imagen" placeholder="URL de la imagen del producto">
 
       <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
@@ -37,7 +35,7 @@
       <select id="categoria"></select>
 
       <div class="estado-preview">
-        Estado automático: <span id="textoEstado" class="inactivo">inactivo</span>
+        Estado en automático: <span id="textoEstado" class="inactivo">inactivo</span>
       </div>
 
       <div class="botones-form">
@@ -64,7 +62,7 @@
       </select>
 
       <select id="categoriaFiltro">
-        <option value="">Filtrar por categoría</option>
+        <option value="">Filtrar por categorías</option>
       </select>
 
       <select id="estadoFiltro">
@@ -74,37 +72,6 @@
       </select>
     </div>
 
-=======
-    </div>
-  </nav>
-
-  <h1>Gestión de Productos</h1>
-
-  <section id="seccionCrear" class="seccion">
-    <div id="formulario">
-      <input type="hidden" id="productoId">
-
-      <input type="text" id="nombre" placeholder="Nombre del producto">
-      <input type="number" id="precio" placeholder="Precio" min="0.01" step="0.01">
-      <input type="number" id="stock" placeholder="Stock" min="0">
-
-      <textarea id="descripcion" placeholder="Descripción del producto"></textarea>
-
-      <select id="categoria"></select>
-
-      <div class="estado-preview">
-        Estado automático: <span id="textoEstado" class="inactivo">inactivo</span>
-      </div>
-
-      <div class="botones-form">
-        <button id="btnGuardar" onclick="agregarProducto()">Guardar Producto</button>
-        <button id="btnCancelar" onclick="cancelarEdicion()">Cancelar</button>
-      </div>
-    </div>
-  </section>
-
-  <section id="seccionListar" class="seccion oculto">
->>>>>>> origin/develop
     <ul id="listaProductos"></ul>
   </section>
 

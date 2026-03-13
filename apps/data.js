@@ -7,22 +7,24 @@ const categoriasPorDefecto = [
 const productosPorDefecto = [
   {
     id: 1,
-    nombre: "Producto 1",
+    nombre: "Producto #1",
     precio: 12,
     stock: 5,
     descripcion: "Producto de ejemplo",
     categoriaId: 1,
-
     estado: "activo",
     imagen: "https://via.placeholder.com/80x80?text=Producto"
-
-    estado: "activo"
-
   }
 ];
 
-export let categorias = JSON.parse(localStorage.getItem("categorias")) || categoriasPorDefecto;
-export let productos = JSON.parse(localStorage.getItem("productos")) || productosPorDefecto;
+export let categorias =
+  JSON.parse(localStorage.getItem("categorias")) || categoriasPorDefecto;
+
+export let productos =
+  JSON.parse(localStorage.getItem("productos")) || productosPorDefecto;
+
+normalizarCategorias();
+normalizarProductos();
 
 export function guardarCategorias() {
   localStorage.setItem("categorias", JSON.stringify(categorias));
@@ -30,4 +32,18 @@ export function guardarCategorias() {
 
 export function guardarProductos() {
   localStorage.setItem("productos", JSON.stringify(productos));
+}
+
+function normalizarCategorias() {
+  categorias.forEach((categoria, index) => {
+    categoria.id = index + 1;
+  });
+  guardarCategorias();
+}
+
+function normalizarProductos() {
+  productos.forEach((producto, index) => {
+    producto.id = index + 1;
+  });
+  guardarProductos();
 }
